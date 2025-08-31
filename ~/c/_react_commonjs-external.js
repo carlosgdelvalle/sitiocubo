@@ -154,11 +154,9 @@
 
 // For backward compatibility
 if (typeof window !== 'undefined') {
-  var reactExports = arguments[0] || {};
-  
   // Make React available globally
-  window.React = window.React || reactExports.React || reactExports.default;
-  window.ReactDOM = window.ReactDOM || reactExports.ReactDOM;
+  window.React = window.React || reactModule.React || reactModule.default;
+  window.ReactDOM = window.ReactDOM || reactModule.ReactDOM;
   
   // Also create a mock React object if none exists
   if (!window.React) {

@@ -153,10 +153,9 @@
 if (typeof window !== 'undefined') {
   window.commonjsHelpers = window.commonjsHelpers || {};
   // Export main functions to global scope
-  var helpers = arguments[0] || {};
-  Object.assign(window.commonjsHelpers, helpers);
+  Object.assign(window.commonjsHelpers, commonjsHelpers);
   
   // Also make them available globally for older scripts
-  window.createCommonjsModule = helpers.createCommonjsModule;
-  window.commonjsRequire = helpers.commonjsRequire;
+  window.createCommonjsModule = commonjsHelpers.createCommonjsModule;
+  window.commonjsRequire = commonjsHelpers.commonjsRequire;
 }

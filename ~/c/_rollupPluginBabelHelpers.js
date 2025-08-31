@@ -212,5 +212,5 @@
 // For backward compatibility
 if (typeof window !== 'undefined') {
   window.babelHelpers = window.babelHelpers || {};
-  Object.assign(window.babelHelpers, arguments[0] || {});
+  Object.assign(window.babelHelpers, babelHelpers);
 }

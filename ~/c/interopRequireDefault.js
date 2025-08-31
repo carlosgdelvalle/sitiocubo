@@ -97,8 +97,7 @@
 
 // For backward compatibility
 if (typeof window !== 'undefined') {
-  var interop = arguments[0] || {};
-  window.interopRequireDefault = interop.interopRequireDefault || interop;
-  window.interopRequireWildcard = interop.interopRequireWildcard;
-  window.interopRequireWildcardCached = interop.interopRequireWildcardCached;
+  window.interopRequireDefault = interopModule.interopRequireDefault || interopModule;
+  window.interopRequireWildcard = interopModule.interopRequireWildcard;
+  window.interopRequireWildcardCached = interopModule.interopRequireWildcardCached;
 }
