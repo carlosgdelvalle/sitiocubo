@@ -1,16 +1,7 @@
 // Interop Require Default
 // Provides ES6/CommonJS module interoperability
 
-(function (global, factory) {
-  'use strict';
-  if (typeof module === 'object' && typeof module.exports === 'object') {
-    module.exports = factory();
-  } else if (typeof define === 'function' && define.amd) {
-    define(factory);
-  } else {
-    global.interopRequireDefault = factory();
-  }
-})(typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : this, function () {
+(function() {
   'use strict';
 
   function interopRequireDefault(obj) {
@@ -86,18 +77,22 @@
   var interopModule = {
     interopRequireDefault: interopRequireDefault,
     interopRequireWildcard: interopRequireWildcard,
-    interopRequireWildcardCached: interopRequireWildcardCached
+    interopRequireWildcardCached: interopRequireWildcardCached,
+    default: interopRequireDefault
   };
 
-  // For direct function access (legacy support)
-  interopModule.default = interopRequireDefault;
+  // Make available globally
+  if (typeof window !== 'undefined') {
+    window.interopRequireDefault = interopRequireDefault;
+    window.interopRequireWildcard = interopRequireWildcard;
+    window.interopRequireWildcardCached = interopRequireWildcardCached;
+  }
 
-  return interopModule;
-});
+  // CommonJS/AMD compatibility
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = interopModule;
+  } else if (typeof define === 'function' && define.amd) {
+    define(function() { return interopModule; });
+  }
 
-// For backward compatibility
-if (typeof window !== 'undefined') {
-  window.interopRequireDefault = interopModule.interopRequireDefault || interopModule;
-  window.interopRequireWildcard = interopModule.interopRequireWildcard;
-  window.interopRequireWildcardCached = interopModule.interopRequireWildcardCached;
-}
+})();

@@ -39,7 +39,7 @@
   var originalObserve = OriginalIntersectionObserver.prototype.observe;
   SafeIntersectionObserver.prototype.observe = function(element) {
     if (!element || element.nodeType !== 1) {
-      console.warn('IntersectionObserver.observe: Invalid element provided', element);
+      // Silently ignore invalid elements to reduce console noise
       return;
     }
     
@@ -100,5 +100,5 @@
     };
   }
 
-  console.log('IntersectionObserver safety wrapper initialized');
+  // IntersectionObserver safety wrapper initialized silently
 })();

@@ -1,16 +1,7 @@
 // React CommonJS External
 // Provides React compatibility for CommonJS modules
 
-(function (global, factory) {
-  'use strict';
-  if (typeof module === 'object' && typeof module.exports === 'object') {
-    module.exports = factory();
-  } else if (typeof define === 'function' && define.amd) {
-    define(factory);
-  } else {
-    global.ReactCommonJS = factory();
-  }
-})(typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : this, function () {
+(function() {
   'use strict';
 
   // Mock React object for compatibility
@@ -149,31 +140,36 @@
     useRef: React.useRef
   };
 
-  return reactModule;
-});
-
-// For backward compatibility
-if (typeof window !== 'undefined') {
   // Make React available globally
-  window.React = window.React || reactModule.React || reactModule.default;
-  window.ReactDOM = window.ReactDOM || reactModule.ReactDOM;
-  
-  // Also create a mock React object if none exists
-  if (!window.React) {
-    window.React = {
-      createElement: function(type, props) {
-        var element = document.createElement(type === 'div' ? 'div' : 'span');
-        if (props) {
-          for (var prop in props) {
-            if (prop !== 'children' && props.hasOwnProperty(prop)) {
-              element.setAttribute(prop, props[prop]);
+  if (typeof window !== 'undefined') {
+    window.React = window.React || React;
+    window.ReactDOM = window.ReactDOM || ReactDOM;
+    
+    // Also create a mock React object if none exists
+    if (!window.React) {
+      window.React = {
+        createElement: function(type, props) {
+          var element = document.createElement(type === 'div' ? 'div' : 'span');
+          if (props) {
+            for (var prop in props) {
+              if (prop !== 'children' && props.hasOwnProperty(prop)) {
+                element.setAttribute(prop, props[prop]);
+              }
             }
           }
-        }
-        return element;
-      },
-      Component: function() {},
-      Fragment: 'div'
-    };
+          return element;
+        },
+        Component: function() {},
+        Fragment: 'div'
+      };
+    }
   }
-}
+
+  // CommonJS/AMD compatibility
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = reactModule;
+  } else if (typeof define === 'function' && define.amd) {
+    define(function() { return reactModule; });
+  }
+
+})();
