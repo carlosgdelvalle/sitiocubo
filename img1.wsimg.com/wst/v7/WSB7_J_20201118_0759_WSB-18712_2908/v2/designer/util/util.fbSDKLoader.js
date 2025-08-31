@@ -1,0 +1,2 @@
+define(["wsbcore/helper","wsbcore/growl","common/util/util.window"],function(n){function o(n,o){t="js!//connect.facebook.net/"+n+"_"+o+"/sdk"}function c(n){n.forEach(function(n){n&&"function"==typeof n&&n()})}var t,e="en",i="US",u=!1,f=!1,r=[],s=[];return window.fbAsyncInit=function(){u=!0,c(r)},o(e,i),{setLocale:function(n,c){o(n,c)},processFBOperation:function(o,e){u?o():(r.push(o),s.push(e),f||(f=!0,n.require([t],function(){},function(){c(s)})))}}});
+//# sourceMappingURL=util.fbSDKLoader.js.map

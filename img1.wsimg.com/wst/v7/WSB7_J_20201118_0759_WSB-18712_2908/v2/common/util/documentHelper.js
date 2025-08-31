@@ -1,0 +1,2 @@
+define(["appconfig"],function(e){function n(e){if(e&&"0"!==e){var n=i.exec(e);return n?r+"/"+n[1]+"?AccessKeyId="+n[2]+"&disposition=0&alloworigin=1":""}return""}var i=/^([0-9a-f]{32}):([0-9a-f]{20})$/i,r=e.documentDownloadBaseUrl.replace(/^https?:|\/+$/gi,"");return{getDocumentUrl:n}});
+//# sourceMappingURL=documentHelper.js.map
